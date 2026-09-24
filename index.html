@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amelia's Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Imbue:wght@400&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/png" href="mila_logo|.png">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="main-box">
+    <img src="Miffy.jpg" alt="Miffy Logo" class="miffy-img" />
+
+    <!-- HOME  -->
+    <div id="home-view" class="view active">
+      <p class="greeting">Welcome to my little corner!</p>
+
+      <div class="button-container">
+        <button class="btn" onclick="showView('about-view')">About Me</button>
+        <button class="btn" onclick="showView('projects-view')">Projects</button>
+        <button class="btn" onclick="showView('contact-view')">Contact</button>
+      </div>
+    </div>
+
+    <!-- ABOUT ME  -->
+    <div id="about-view" class="view">
+      <p class="greeting">About Me</p>
+      <div class="info-content">
+        <p class="greeting-text">Hi, I'm Amelia!</p>
+        <p>I'm a 4th year Computer Systems student at the University of Limerick. Previously, I worked as an Enterprise Systems and Data Intern at Alexion/AstraZeneca, building Python automation and data processing pipelines.</p>
+      </div>
+      <button class="btn back-btn-small" onclick="showView('home-view')">← Back</button>
+    </div>
+
+    <!-- PROJECTS-->
+    <div id="projects-view" class="view">
+      <p class="greeting">Projects</p>
+      
+      <div class="project-list">
+        <a href="https://github.com/Amilkamija/MindLink.git" target="_blank" class="btn btn-small">MindLink</a>
+        <a href="https://github.com/Amilkamija/CS4076_EventDrivenProgramming.git" target="_blank" class="btn btn-small">Event-Driven Programming</a>
+        <button class="btn btn-small" onclick="showModal('leapwork-modal')">LeapWork Automated Reporting</button>
+        <button class="btn btn-small" onclick="showModal('geocoding-modal')">Supply Chain Geocoding</button>
+        <button class="btn btn-small" onclick="showModal('esker-modal')">Esker QA Load Testing</button>
+      </div>
+
+      <p class="coming-soon">More projects to come...</p>
+
+      <button class="btn back-btn-small" onclick="showView('home-view')">← Back</button>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="contact-view" class="view">
+      <p class="greeting">Contact</p>
+      <div class="info-content">
+        <p>
+          Feel free to connect with me on 
+          <a href="https://www.linkedin.com/in/amelia-polak-ba04872b7" target="_blank" class="contact-link">LinkedIn</a> 
+          or explore my 
+          <a href="https://github.com/Amilkamija" target="_blank" class="contact-link">GitHub</a> 
+          repositories!
+        </p>
+      </div>
+      <button class="btn back-btn-small" onclick="showView('home-view')">← Back</button>
+    </div>
+
+    <!-- Footer -->
+    <p class="footer">&copy; 2026 Amelia's Portfolio</p>
+  </div>
+
+  <!-- MODALS -->
+  <div id="leapwork-modal" class="modal">
+    <div class="modal-content">
+      <h3>LeapWork Automated Reporting</h3>
+      <p>Designed and integrated a Python solution that auto-generated structured Word reports from SAP test runs, directly into the AstraZeneca production codebase. Cut manual effort by 5–8 hours/week.</p>
+      <button class="btn btn-close" onclick="closeModal('leapwork-modal')">Close</button>
+    </div>
+  </div>
+
+  <div id="geocoding-modal" class="modal">
+    <div class="modal-content">
+      <h3>Supply Chain Geocoding Pipeline</h3>
+      <p>Built a hybrid geocoding workflow in Python (street-level + city-level fallback) that transformed raw location data into coordinates, unlocking geospatial visualisation for the Supply Chain team.</p>
+      <button class="btn btn-close" onclick="closeModal('geocoding-modal')">Close</button>
+    </div>
+  </div>
+
+  <div id="esker-modal" class="modal">
+    <div class="modal-content">
+      <h3>Esker QA Load Testing</h3>
+      <p>Programmatically generated 300 unique test orders to simulate high-volume system load, enabling performance benchmarking of a production order processing platform.</p>
+      <button class="btn btn-close" onclick="closeModal('esker-modal')">Close</button>
+    </div>
+  </div>
+
+  <script>
+    function showView(viewId) {
+      document.querySelectorAll('.view').forEach(view => {
+        view.classList.remove('active');
+      });
+      document.getElementById(viewId).classList.add('active');
+    }
+
+    function showModal(modalId) {
+      document.getElementById(modalId).classList.add('active');
+    }
+
+    function closeModal(modalId) {
+      document.getElementById(modalId).classList.remove('active');
+    }
+
+    document.addEventListener("click", function (e) {
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+
+      const sparkle = document.createElement("div");
+      sparkle.className = "sparkle";
+      sparkle.style.left = `${e.clientX}px`;
+      sparkle.style.top = `${e.clientY}px`;
+      document.body.appendChild(sparkle);
+
+      setTimeout(() => sparkle.remove(), 600);
+    });
+  </script>
+</body>
+</html>
